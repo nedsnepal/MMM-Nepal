@@ -18,23 +18,58 @@
         }
         
         /* Header */
-        <header>
-    <nav>
-        <a href="/" class="logo">
-            <img src="https://cdn.prod.website-files.com/676d91fd93f53f894a07368f/67757d13bc5d894e04255a21_Registered-MMM-Logo.png" 
-                 alt="May Measure Month Logo">
-            <span class="logo-text">Nepal</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#sites">Sites</a></li>
-            <li><a href="#archive">Archive</a></li>
-            <li><a href="#register">Register</a></li>
-        </ul>
-    </nav>
-</header>
+        header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            color: #dc143c;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #dc143c;
+        }
         
         /* Hero Section */
         .hero {
@@ -217,7 +252,11 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">MMM Nepal</div>
+            <a href="/" class="logo">
+                <img src="https://cdn.prod.website-files.com/676d91fd93f53f894a07368f/67757d13bc5d894e04255a21_Registered-MMM-Logo.png" 
+                     alt="May Measure Month Logo">
+                <span class="logo-text">Nepal</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
