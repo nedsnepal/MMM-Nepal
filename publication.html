@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Publications - May Measure Month Nepal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #dc143c;
+        }
+        
+        .nav-links a.active {
+            color: #dc143c;
+            font-weight: 600;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #dc143c;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+            color: white;
+            padding: 140px 2rem 80px;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #fff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: #dc143c;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        /* Publications Grid */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Publication Card */
+        .publication-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .publication-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .publication-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+        
+        .publication-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .publication-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .publication-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .publication-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .publication-title a:hover {
+            color: #dc143c;
+        }
+        
+        .publication-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .publication-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .publication-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .publication-meta i {
+            color: #dc143c;
+            font-size: 0.9rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pagination a {
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .pagination a:hover {
+            background: #dc143c;
+            color: white;
+            border-color: #dc143c;
+        }
+        
+        .pagination a.active {
+            background: #dc143c;
+            color: white;
+            border-color: #dc143c;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+        
+        footer a {
+            color: #dc143c;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header {
+                padding: 120px 1.5rem 60px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .publications-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" aria-label="home">
+                    <img width="163" alt="May Measure Month Nepal" src="https://cdn.prod.website-files.com/676d91fd93f53f894a07368f/67757d13bc5d894e04255a21_Registered-MMM-Logo.png" loading="lazy">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tools">Tools</a></li>
+                <li><a href="index.html#sites">Sites</a></li>
+                <li><a href="publication.html" class="active">Publications</a></li>
+                <li><a href="index.html#register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our Publications</h1>
+        <p>Research papers, annual reports, and findings from May Measure Month Nepal campaigns</p>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <a href="index.html">Home</a> / <span>Publications</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="publications-grid">
+            
+            <!-- Publication 1 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>MMM Nepal<br>Annual Report 2024</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">May Measure Month Nepal: Annual Report 2024</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Comprehensive report detailing the 2024 campaign activities, screening outcomes across all 77 districts, and key findings from over 15,000 participants screened nationwide.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> January 15, 2025</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 2 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>Hypertension<br>Prevalence Study</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Hypertension Prevalence and Awareness in Nepal: A Nationwide Community-Based Study</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        This study presents findings from over 13,000 participants screened during May Measure Month 2022 across 32 districts, revealing a hypertension prevalence of 31.5% among adults.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> March 22, 2024</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 3 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>Community<br>Screening Impact</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Impact of Community-Based Blood Pressure Screening Programs in Low-Resource Settings</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        An analysis of screening outcomes and referral pathways established during the 2021-2023 campaigns, demonstrating effectiveness of opportunistic screening in public spaces and workplaces.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> November 8, 2023</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 4 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>MMM Nepal<br>Annual Report 2022</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">May Measure Month Nepal: Annual Report 2022</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Detailed report on the 2022 campaign with 13,120 participants screened across 32 districts, featuring demographic analysis, regional variations, and control rate assessments.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> July 30, 2023</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 5 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>COVID-19<br>Adaptations</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Adapting Hypertension Screening During COVID-19: Lessons from Nepal</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Documentation of modified protocols, safety measures, and innovative approaches implemented during 2020-2021 to continue essential screening services during the global pandemic.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> February 14, 2023</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 6 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>BP Control<br>Rates Analysis</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Blood Pressure Control Rates Among Treated Hypertensive Patients in Nepal</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Analysis of control rates among participants with known hypertension, revealing that only 46.1% of treated patients have controlled blood pressure and identifying barriers to effective management.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> August 5, 2022</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 7 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>MMM Nepal<br>Annual Report 2020</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">May Measure Month Nepal: Annual Report 2020</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Report on the successful continuation of screening activities despite global pandemic challenges, with 11,348 participants screened using adapted safety protocols.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> December 10, 2021</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 8 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>Youth &<br>Hypertension</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Early Detection of Hypertension in Young Adults: The Nepal Experience</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Focused analysis on hypertension prevalence among adults aged 18-35, highlighting the importance of early screening and lifestyle interventions in preventing cardiovascular disease.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> May 17, 2021</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Publication 9 -->
+            <article class="publication-card">
+                <div class="publication-image">
+                    <div>Rural vs Urban<br>Screening</div>
+                </div>
+                <div class="publication-content">
+                    <h2 class="publication-title">
+                        <a href="#">Urban-Rural Disparities in Hypertension Awareness and Control in Nepal</a>
+                    </h2>
+                    <p class="publication-excerpt">
+                        Comparative study examining differences in hypertension prevalence, awareness, treatment, and control between urban and rural populations across multiple screening sites.
+                    </p>
+                    <div class="publication-meta">
+                        <span><i class="far fa-calendar"></i> October 3, 2020</span>
+                        <span><i class="far fa-comment"></i> No Comments</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 May Measure Month Nepal. All rights reserved.</p>
+        <p>Contact: <a href="mailto:info@nedsnepal.org.np">info@nedsnepal.org.np</a> | <a href="https://www.nedsnepal.org.np" target="_blank">www.nedsnepal.org.np</a></p>
+    </footer>
+</body>
+</html>
